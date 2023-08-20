@@ -13,12 +13,12 @@ cancel = False
 async def _(event):
     await event.reply("Hello!")
 
-
 @bot.on(events.NewMessage(pattern="/sthumb"))
 async def _(event):
     x = await event.get_reply_message()
-    thumb = await bot.download_media(x.photo)
-    with open(thumb, "rb") as f:
+    x_media = x.photo
+    x_media_file = await bot.download_media(x_media)
+    with open(x_media_file, "rb") as f:
         pic = f.read()
     with open("thumb.png", "wb") as f:
         f.write(pic)
